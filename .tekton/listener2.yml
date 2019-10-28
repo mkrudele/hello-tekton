@@ -1,11 +1,12 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
-  name: template
+  name: template2
 spec:
   params:
     - name: repository
       description: The git repo
+    - name: revision
     - name: apikey
       description: the ibmcloud api key
     - name: registryNamespace
@@ -28,12 +29,14 @@ spec:
         name: pipelinerun-$(uid)
       spec:
         pipelineRef:
-            name: pipeline
+          name: pipeline
         params:
         - name: pipeline-pvc
           value: pipelinerun-$(uid)-pvc
         - name: repository
           value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
         - name: apikey
           value: $(params.apikey)
         - name: registryNamespace
@@ -50,16 +53,18 @@ spec:
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
-  name: binding
+  name: binding2
 spec:
   params:
     - name: repository
       value: "https://github.com/open-toolchain/hello-tekton"
+    - name: revision
+      value: "newestbranchever" 
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: EventListener
 metadata:
-  name: listener
+  name: listener2
 spec:
   triggers:
     - binding:
