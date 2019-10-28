@@ -68,6 +68,6 @@ metadata:
 spec:
   triggers:
     - binding:
-        name: binding
+        name: binding2
       template:
-        name: template
+        name: template2
