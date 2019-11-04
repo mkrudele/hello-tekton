@@ -31,7 +31,7 @@ spec:
         - name: TEST
           valueFrom:
             fieldRef:
-              fieldPath: metadata.labels
+              fieldPath: metadata.labels['tekton.dev/task']
         - name: REPOSITORY
           value: $(inputs.params.repository)
         - name: REVISION
