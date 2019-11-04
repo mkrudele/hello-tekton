@@ -28,10 +28,6 @@ spec:
     - name: clone-repo
       image: alpine/git
       env:
-        - name: LABELS
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels
         - name: REPOSITORY
           value: $(inputs.params.repository)
         - name: REVISION
