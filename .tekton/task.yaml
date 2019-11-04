@@ -39,7 +39,7 @@ spec:
       command: ["/bin/sh", "-c"]
       args:
         - set -e -o pipefail;
-          echo $LABELS
+          echo $LABELS;
           echo "Cloning $REPOSITORY -- $REVISION";
           git clone -q -b $REVISION $REPOSITORY .;
     - name: pre-build-check
