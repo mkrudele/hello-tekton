@@ -28,6 +28,10 @@ spec:
     - name: clone-repo
       image: alpine/git
       env:
+        - name: TEST
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         - name: REPOSITORY
           value: $(inputs.params.repository)
         - name: REVISION
@@ -35,7 +39,7 @@ spec:
       command: ["/bin/sh", "-c"]
       args:
         - set -e -o pipefail;
-          echo $LABELS;
+          echo $TEST;
           echo "Cloning $REPOSITORY -- $REVISION";
           git clone -q -b $REVISION $REPOSITORY .;
     - name: pre-build-check
