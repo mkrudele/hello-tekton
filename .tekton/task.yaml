@@ -2,6 +2,8 @@ apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
   name: build-task
+  annotations:
+    io.kubernetes.cri.untrusted-workload: "true"
 spec:
   inputs:
     params:
@@ -107,6 +109,8 @@ apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
   name: validate-task
+  annotations:
+    io.kubernetes.cri.untrusted-workload: "true"
 spec:
   inputs:
     params:
@@ -167,6 +171,8 @@ apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
   name: deploy-task
+  annotations:
+    io.kubernetes.cri.untrusted-workload: "true"  
 spec:
   inputs:
     params:
